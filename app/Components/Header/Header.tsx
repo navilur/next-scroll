@@ -6,8 +6,13 @@ import React from "react";
 import logo from "@/public/logo.png";
 import Button from "../Button/Button";
 import styled from "styled-components";
-
 import { FaRocket, FaWallet } from "react-icons/fa";
+import { Abril_Fatface } from "next/font/google";
+
+const abril = Abril_Fatface({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 function Header() {
   return (
@@ -36,6 +41,39 @@ function Header() {
           <Button name="Connect Wallet" icon={<FaWallet />} />
         </ul>
       </nav>
+      <div className="header_content">
+        <div className="text_content">
+          <h1 className={abril.className}>
+            Buy, collect, and sell extraordinary NFTs
+          </h1>
+          <p>
+            Acquire expertise in navigating the rapidly evolving and
+            exhilarating NFT landscape, unveil the highly sought-after NFTs, and
+            comprehend the possible advantages and disadvantages of acquiring,
+            amassing, and vending these exceptional digital assets.
+          </p>
+          <div className="buttons">
+            <Button
+              name="Get Started"
+              background="#f2994a"
+              color="#fff"
+              border="1px solid #f2994a"
+              icon={<FaRocket />}
+            />
+            <Button name="Learn More" />
+          </div>
+        </div>
+        <div className="image_content">
+          <div className="image">
+            <Image
+              src="/images/monkey.png"
+              width={600}
+              height={600}
+              alt="hero"
+            />
+          </div>
+        </div>
+      </div>
     </HeaderStyled>
   );
 }
@@ -84,7 +122,7 @@ const HeaderStyled = styled.header`
       }
     }
   }
-  .header-content {
+  .header_content {
     padding: 0 10rem 5rem 10rem;
     display: flex;
     justify-content: space-between;
@@ -92,9 +130,9 @@ const HeaderStyled = styled.header`
     gap: 4rem;
     min-height: calc(100vh - 10vh);
 
-    .text-content {
+    .text_content {
       > h1 {
-        font-size: clamp(2rem, 5vw, 5rem);
+        font-size: clamp(1rem, 5vw, 5rem);
         color: #f2994a;
         transition: all 0.01s linear;
         padding-bottom: 1.5rem;
@@ -107,7 +145,7 @@ const HeaderStyled = styled.header`
       }
     }
 
-    .image-content .image {
+    .image_content .image {
       padding: 1rem;
       border-radius: 8px;
       background-color: var(--color-bg);
