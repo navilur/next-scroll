@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useRef } from "react";
 
 import logo from "@/public/logo.png";
 import Button from "../Button/Button";
 import styled from "styled-components";
 import { FaRocket, FaWallet } from "react-icons/fa";
 import { Abril_Fatface } from "next/font/google";
+import hover3d from "@/app/utils/hover";
 
 const abril = Abril_Fatface({
   subsets: ["latin"],
@@ -15,8 +16,21 @@ const abril = Abril_Fatface({
 });
 
 function Header() {
+  const hero = useRef<HTMLDivElement>(null);
+
+  const hoverHero = hover3d(hero, {
+    x: 30,
+    y: -40,
+    z: 30,
+  });
+
+  const imageHover = hover3d(hero, {
+    x: 20,
+    y: -5,
+    z: 11,
+  });
   return (
-    <HeaderStyled>
+    <HeaderStyled ref={hero}>
       <nav>
         <div className="logo">
           <Image src={logo} alt="logo" width={36} />
@@ -64,12 +78,20 @@ function Header() {
           </div>
         </div>
         <div className="image_content">
-          <div className="image">
+          <div
+            className="image"
+            style={{
+              transform: hoverHero.transform,
+            }}
+          >
             <Image
               src="/images/monkey.png"
               width={600}
               height={600}
               alt="hero"
+              style={{
+                transform: imageHover.transform,
+              }}
             />
           </div>
         </div>
@@ -123,7 +145,7 @@ const HeaderStyled = styled.header`
     }
   }
   .header_content {
-    padding: 0 10rem 5rem 10rem;
+    padding: 5rem 10rem 5rem 10rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
